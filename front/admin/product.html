@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../style.css" rel="stylesheet"/>
+    <title>Productos</title>
+</head>
+<body>
+    <h1>Crear un nuevo producto:</h1>
+    <button onclick="window.location.href = '../index.html'">Inicio</button>
+    <form id="product-form">
+        <label for="name">Nombre:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="description">Descripción:</label>
+        <input type="text" name="description" id="description">
+        <label for="price">Precio:</label>
+        <input type="number" name="price" id="price">
+        <label for="categoryId">Categorias:</label>
+        <select name="categoryId" id="categoryId">Categorias</select>
+        <button type="submit">Crear</button>
+    </form>
+
+    <h1>Productos Existentes:</h1>
+    <button id="load-products-button">Mostrar Productos</button>
+    <table id="table">
+
+        <tbody id="product-list">
+            <!-- se muestra los productos para eliminar y/o editar -->
+        </tbody>
+    </table>
+    
+
+    <script src="product.js"></script>
+
+</body>
+</html>

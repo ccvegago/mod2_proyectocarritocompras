@@ -1,0 +1,16 @@
+body {
+    background-color: gray;
+}
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.product-card {
+    width: 30%;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+}

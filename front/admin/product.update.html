@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../style.css" rel="stylesheet"/>
+    <title>Actualizar Producto</title>
+</head>
+<body>
+    <h1>Editar Producto</h1>
+    <button onclick="window.location.href = 'product.html'">volver</button>
+    <form id="edit-product-form">
+        <label for="name">Nombre:</label>
+        <input type="text" id="name" name="name">
+        <label for="description">Descripción:</label>
+        <input type="text" name="description" id="description">
+        <label for="price">Precio:</label>
+        <input type="number" id="price" name="price">
+        <label for="categoryId">Categoria:</label>
+        <select name="categoryId" id="categoryId">Categoria</select>
+
+        <button onclick="updateProduct()">Actualizar</button>
+
+    </form>
+    
+    <script src="product.js"></script>
+</body>
+</html>
