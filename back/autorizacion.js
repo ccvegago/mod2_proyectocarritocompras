@@ -7,11 +7,11 @@ async function auth(req, res, next) {
     //verify verifica que si sea el token del usuario.
     let resultadoToken = jwt.verify(token, '12345');
 
-    let usuario = await userModel.findOne({id: resultadoToken.id});
+    let usuario = await userModel.findOne({where: { id: resultadoToken.id } });
     if(!usuario) {
         throw new Error('usuario no existe');
     }
-
+    //console.log(resultadoToken, usuario)
     req.user = usuario;
 
     next();

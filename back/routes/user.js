@@ -82,14 +82,14 @@ app.post('/user/signup', async function (req, res) {
 
 //Inicia sesión, se logea.
 app.post('/user/signin', async function (req, res) {
-    let name = req.body.name;
+    //let name = req.body.name;
     let email = req.body.email;
     let pass = req.body.pass;
     
     let user = await User.findOne({ where:{email} });
 
     let comp = bcrypt.compareSync(pass, user.pass );
-    console.log(user);
+    console.log(user, email);
     if(!comp){
         throw new Error ("Contraseña Incorrecta");
     }

@@ -45,9 +45,14 @@ app.post('/product', async function (req, res) {
     let price = req.body.price;
     let categoryId = req.body.categoryId;
 
-    let product = await Product.create({ name: name, description: description, price: price, CategoryId: categoryId });
-    await product.save();
-    res.send('Producto creado..');
+    try {
+        let product = await Product.create({ name: name, description: description, price: price, CategoryId: categoryId });
+        await product.save();
+        //res.send('Producto creado..');
+        res.status(201).json({ message: 'Producto creado exitosamente'});
+    } catch (error){
+        res.status(500).json({ error: 'Error al crear el producto'});
+     }
 });
 
 app.put('/product/:id', async (req, res) => {

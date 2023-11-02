@@ -8,14 +8,21 @@ const Product = require('../model/product.model');
 const auth = require('../autorizacion');
 const User = require('../model/user.model');
 
-
-app.get('/carproduct', async function (req, res) {
+// unificar el auth y su respectivo where
+app.get('/carproduct', auth, async function (req, res) {
+    let carUserId = await Car.findOne({where: {UserId: req.user.id, status:'active'}})
+    if (!carUserId) {
+        carUserId = await Car.create({UserId:req.user.id, status:"active"})
+        carUserId.save();
+    }
     let carproducts = await CarProduct.findAll({
+        where: { 'CarId': carUserId.id },
         include: {
             model: Car,
             model: Product
         }
     });
+    
 
     res.send(carproducts);
 });

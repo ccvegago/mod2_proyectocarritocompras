@@ -13,8 +13,14 @@ async function getCarProducts() {
   }
 
  async function getContentCar() {
+    let token = localStorage.getItem('token');
     try{
-        const response = await fetch('http://localhost:3000/carproduct');
+        const response = await fetch('http://localhost:3000/carproduct',{
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': token
+            },
+        });
         const data = await response.json();
         const carContent = document.getElementById('car-content');
 
@@ -54,7 +60,7 @@ async function getCarProducts() {
                         //BOTON PARA ELIMINAR PRODUCTO DEL CARRITO
                         const deleteButton = document.createElement('button');
                         deleteButton.textContent = 'Eliminar';
-                        deleteButton.addEventListener('click', () => deleteProduct(product.Product.id));
+                        deleteButton.addEventListener('click', () => deleteProduct(product.id));
                         item.appendChild(deleteButton);
 
                         listProduct.appendChild(item);

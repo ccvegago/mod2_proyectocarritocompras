@@ -17,8 +17,11 @@ function getProducts(){
     .then(response => response.json())
     .then(data => {
         let productTable = document.getElementById('table');
-        productTable.innerHTML = '';
-        productTable.className = 'product-list';
+        productTable.innerHTML = ''; // Limpia el contenido anterior.
+
+        //crea la tabla y su estructura
+        let table = document.createElement('table');
+        table.className = 'product-list';
 
         //crea cabeceras de la tabla y sus columnas
         let tableHeader = document.createElement('thead'); // thead agrupa el contenido del encabezado en una tabla html
@@ -35,7 +38,7 @@ function getProducts(){
         `;
         productTable.appendChild(tableHeader);
         
-        //Reccore los productos, agrega cada uno a la tabla.
+        //Reccorre los productos, agrega cada uno a la tabla.
         data.forEach(Product => {
             let row = document.createElement('tr');
 
@@ -75,7 +78,8 @@ function getProducts(){
 
             //Agrega el evento de Actualizar boton
             updateButton.addEventListener('click', () =>{
-                window.location.href = "product.update.html";//updateProduct(Product.id);
+                const updateUrl= `product.update.html?id=${Product.id}&name=${Product.name}&description=${Product.description}&price=${Product.price}&categoryId=${Product.categoryId}`;
+                 window.location.href = updateUrl;
             })
             updateCell.appendChild(updateButton);
 
@@ -160,8 +164,13 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             if (response.status === 201) {
-                alert('Producto creado exitosamente');
-                productForm.reset();
+                let data = await response.json();
+                alert(data.message);
+                // se restablce los campos del formularios es decir se dejan vacios..
+                document.getElementById('name').value = '';
+                document.getElementById('description').value = '';
+                document.getElementById('price').value = '';
+                document.getElementById('categoryId').value = '';
             }else {
                 let data = await response.json();
                 alert('Error al crear producto: ' + data.error)
@@ -170,10 +179,10 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error(error);
         }
         // aca restablece el form ..
-        name.value = '';
+        /*name.value = '';
         description.value = '';
         price.value = '';
-        categoryId.value = '';
+        categoryId.value = '';*/
     }
 });
 
