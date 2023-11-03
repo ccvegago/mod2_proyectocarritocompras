@@ -77,10 +77,9 @@ function getProducts(){
             updateButton.setAttribute('data-productid', Product.id);
 
             //Agrega el evento de Actualizar boton
-            updateButton.addEventListener('click', () =>{
-                const updateUrl= `product.update.html?id=${Product.id}&name=${Product.name}&description=${Product.description}&price=${Product.price}&categoryId=${Product.categoryId}`;
-                 window.location.href = updateUrl;
-            })
+            updateButton.addEventListener('click', async () => {
+                window.location.href = `product.update.html?id=${Product.id}`;
+            });
             updateCell.appendChild(updateButton);
 
             //Agrega las celdas a la fila
@@ -128,6 +127,7 @@ function deleteProduct(productId) {
 document.addEventListener('DOMContentLoaded', () => {
     let productForm = document.getElementById('product-form');
     let categorySelect = document.getElementById('categoryId');
+    console.log(categorySelect);
     
     //Realiza una solicitud para obetener las categorias
     fetch('http://localhost:3000/categories')
@@ -187,9 +187,12 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// ------- ACTUALIZAR PRODUCTO--------------
+
+
+
+
 // El parametro updateData, contiene la información actualizada del producto, para enviarlo al servidor.
-function updateProduct(productId, updatedData) {
+/*function updateProduct(productId, updatedData) {
     fetch(`http://localhost:3000/product/${productId}`, {
         method: 'PUT',
         headers: {
@@ -208,6 +211,6 @@ function updateProduct(productId, updatedData) {
         }
     })
     .catch(error => console.error(error))
-}
+}*/
 
 

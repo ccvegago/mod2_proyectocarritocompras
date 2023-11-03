@@ -7,15 +7,29 @@
     <title>Login</title>
 </head>
 <body>
-    
-        <label for="email">Correo</label>
-        <input type="email" id="email" />
-        <label for="pass">Password</label>
-        <input type="password" id="pass" />
-
-        <button type="button" id="button-login">Iniciar Sesión</button>
-        <button onclick="window.location.href = 'signup.html'">Registrarse</button>
-    
+    <div class="wrapper">
+        <form>
+            <h2>Login</h2>
+            <div class="input-field">
+                <label for="email">Correo</label>
+                <input type="email" id="email" required />
+            </div>
+            <div class="input-field">
+                <label for="pass">Password</label>
+                <input type="password" id="pass" required/>
+            </div>
+            <div class="forget">
+                <label for="remember">
+                    <input type="checkbox" id="remember">
+                    <p>Recordar</p>
+                </label>
+            </div>
+            <button type="button" id="button-login">Iniciar Sesión</button>
+            <div class="register">
+                <button onclick="window.location.href = 'signup.html'">Registrarse</button>
+            </div>
+    </form>
+    </div>
     <script src="login.js"></script>
 </body>
 </html>
